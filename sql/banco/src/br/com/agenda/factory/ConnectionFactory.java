@@ -1,7 +1,6 @@
 package br.com.agenda.factory;
 
 import java.sql.Connection;
-
 import java.sql.DriverManager;
 
 
