@@ -1,8 +1,7 @@
 package br.com.agenda.dao;
 
 import java.sql.Connection;
-
-
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class ContatoDAO {
 
 	public void save(Contato contato) {
 
-		String sql = "INSERT INTO contatos(nome, idade) VALUES (?, ?)";
+		String sql = "INSERT INTO contatos(nome, idade ,salario,datacadastro) VALUES (?,?,?,?)";
 
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -36,8 +35,9 @@ public class ContatoDAO {
 			// Adicionar os valores que são esperados pela query
 			pstm.setString(1, contato.getNome());
 			pstm.setInt(2, contato.getIdade());
+			pstm.setDouble(3, contato.getSalario());
+			pstm.setDate(4, new Date (contato.getDatacadastro().getTime()));
 			
-
 			// Executar a query
 			pstm.execute();
 
@@ -85,13 +85,12 @@ public class ContatoDAO {
 				
 				//Recuperar o id
 				contato.setId(rset.getInt("id"));
-				//Recuperar o nome
 				contato.setNome(rset.getString("nome"));
-				//Recuperar a idade
 				contato.setIdade(rset.getInt("idade"));
-				//Recuperar a data de cadastrado
-		
+				contato.setSalario(rset.getDouble("salario"));
+				contato.setDatacadastro(rset.getDate("datacadastro"));
 				
+			
 				contatos.add(contato);
 				
 			}
@@ -119,7 +118,7 @@ public class ContatoDAO {
 	}
 		
 	public void update(Contato contato) {
-		String sql = "UPDATE contatos SET nome = ? , idade = ? "
+		String sql = "UPDATE contatos SET nome = ? , idade = ? ,salario = ?"
 				+ "WHERE id = ?";
 				
 		
@@ -136,8 +135,8 @@ public class ContatoDAO {
 			
 			pstm.setString(1, contato.getNome());
 			pstm.setInt(2, contato.getIdade());
-			pstm.setInt(3, contato.getId());
-						
+			pstm.setDouble(3, contato.getSalario());	
+			pstm.setInt(4, contato.getId());
 			pstm.execute();
 			
 		} catch (Exception e) {
