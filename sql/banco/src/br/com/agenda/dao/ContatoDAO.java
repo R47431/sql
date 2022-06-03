@@ -65,7 +65,7 @@ public class ContatoDAO {
 		
 		String sql = "SELECT * FROM contatos";
 		
-		List<Contato> contatos = new ArrayList<Contato>();
+		List<Contato> contatos = new ArrayList<>();
 		
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -88,7 +88,7 @@ public class ContatoDAO {
 				//Recuperar o nome
 				contato.setNome(rset.getString("nome"));
 				//Recuperar a idade
-				contato.setId(rset.getInt("idade"));
+				contato.setIdade(rset.getInt("idade"));
 				//Recuperar a data de cadastrado
 		
 				

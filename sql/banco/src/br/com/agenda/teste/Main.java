@@ -31,7 +31,7 @@ public class Main {
 		//Visualização dos registros do banco de dados TODOS
 		
 		for(Contato c : contatoDao.getContatos()) {
-			System.out.println("    "+c.getId()+"   Contato:  "+c.getNome()+"     idade "+c.getId());
+			System.out.println("    "+c.getId()+"   Nome  "+c.getNome()+"     Idade "+c.getIdade());
 		}
 	}
 
